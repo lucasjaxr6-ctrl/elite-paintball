@@ -308,6 +308,54 @@ footer::before{content:"";position:absolute;inset:0;background:rgba(26,32,19,.9)
 .in .respingo,.respingo.in{transform:scale(1) rotate(var(--r,0deg))}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv,.hero .ent{opacity:1;transform:none}.respingo{transform:scale(1)}}
 
+
+/* ===== mais ação ===== */
+.hero,.mods,.valores,footer{animation:camo 90s linear infinite}
+@keyframes camo{to{background-position:640px 320px}}
+.municao{position:absolute;left:0;right:0;bottom:-10px;display:flex;justify-content:center;gap:5px;pointer-events:none;opacity:0;transition:opacity .3s}
+header.solid .municao{opacity:1}
+.municao i{width:5px;height:12px;border-radius:3px 3px 1px 1px;background:var(--amarelo);box-shadow:0 1px 0 rgba(0,0,0,.4);transition:background .3s,transform .3s}
+.municao i.gasto{background:rgba(238,230,209,.18);transform:translateY(2px)}
+.bala{position:absolute;width:18px;height:18px;border-radius:50%;z-index:4;pointer-events:none;box-shadow:inset -4px -4px 0 rgba(0,0,0,.2)}
+.bala::after{content:"";position:absolute;top:50%;right:100%;width:80px;height:6px;margin-top:-3px;border-radius:6px;background:linear-gradient(90deg,transparent,currentColor);opacity:.55}
+.w{display:inline-block}
+.w>span{display:inline-block}
+.rv .w>span{opacity:0;transform:scale(2.4) rotate(-8deg);filter:blur(3px)}
+.rv.in .w>span{animation:slam .55s cubic-bezier(.2,1.5,.4,1) forwards;animation-delay:calc(var(--i)*85ms + .1s)}
+@keyframes slam{60%{opacity:1;filter:blur(0)}to{opacity:1;transform:none;filter:none}}
+.rv.in .selo{animation:carimbinho .5s cubic-bezier(.2,1.6,.4,1) backwards}
+@keyframes carimbinho{from{transform:rotate(-12deg) scale(1.8);opacity:0}}
+.confete{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.confete i{position:absolute;top:-20px;width:10px;height:16px;opacity:.85;animation:cai-conf var(--t) linear infinite;animation-delay:var(--dl)}
+@keyframes cai-conf{0%{transform:translate(0,0) rotate(0)}100%{transform:translate(var(--x),110vh) rotate(var(--rot))}}
+.festas{min-height:100px}
+.festas .wrap{position:relative;z-index:1}
+.radar{position:absolute;inset:0;border-radius:50% 50% 8px 8px;overflow:hidden;pointer-events:none;mix-blend-mode:screen}
+.radar::before{content:"";position:absolute;inset:-30%;background:conic-gradient(from 0deg,transparent 0 300deg,rgba(123,209,58,.0) 300deg,rgba(123,209,58,.45) 360deg);animation:varre 4s linear infinite}
+@keyframes varre{to{transform:rotate(360deg)}}
+.radar::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.08) 0 2px,transparent 2px 5px)}
+.mod .acerto{position:absolute;width:70px;height:70px;z-index:3;pointer-events:none;transform:scale(0) rotate(var(--r));transition:transform .35s cubic-bezier(.2,1.8,.4,1)}
+.mod:hover .acerto{transform:scale(1) rotate(var(--r))}
+.mod:hover{animation:tremor .35s ease}
+@keyframes tremor{20%{translate:-3px 1px}40%{translate:3px -1px}60%{translate:-2px 0}80%{translate:2px 1px}}
+.slots.in .slot{animation:scan 7.5s ease-in-out infinite;animation-delay:calc(var(--k)*1.5s)}
+@keyframes scan{0%,16%,100%{border-color:rgba(238,230,209,.18);background:rgba(26,32,19,.55)}6%{border-color:var(--amarelo);background:rgba(245,197,24,.14)}}
+.btn:active{transform:translate(3px,3px)!important;box-shadow:1px 1px 0 var(--mata)!important}
+.btn-laranja:hover svg,.btn-zap:hover svg{animation:recuo .4s ease}
+@keyframes recuo{30%{transform:translateX(-4px) rotate(-12deg)}}
+.kid-wrap .balao{animation:balanca 2.6s ease-in-out infinite}
+@keyframes balanca{0%,100%{transform:rotate(6deg)}50%{transform:rotate(-2deg) translateY(-4px)}}
+.kid-wrap .fundo-splat{animation:pulsa 3s ease-in-out infinite}
+@keyframes pulsa{50%{transform:scale(1.06) rotate(6deg)}}
+.fav{animation:fav 1.8s ease-in-out infinite}
+@keyframes fav{0%,100%{transform:rotate(5deg)}50%{transform:rotate(-3deg) scale(1.08)}}
+.preco{display:inline-block}
+.ticket.in .preco{animation:carimbinho .7s cubic-bezier(.2,1.6,.4,1) .3s backwards}
+.inclui.in span,.rv.in .inclui span{animation:pula-tag .5s cubic-bezier(.3,1.8,.5,1) backwards;animation-delay:calc(var(--k)*60ms + .4s)}
+@keyframes pula-tag{from{transform:translateY(20px) rotate(-8deg);opacity:0}}
+.fitas{transition:transform .15s linear}
+@media (prefers-reduced-motion:reduce){.rv .w>span{opacity:1;transform:none;filter:none}.confete,.radar,.bala{display:none}}
+
 /* responsivo */
 @media (max-width:1100px){.mod-grid{grid-template-columns:repeat(3,1fr)}.mod:nth-child(even){transform:rotate(1.2deg)}}
 @media (max-width:960px){
@@ -355,6 +403,7 @@ footer::before{content:"";position:absolute;inset:0;background:rgba(26,32,19,.9)
 </svg>
 
 <header id="topo">
+  <div class="municao" id="municao" aria-hidden="true"></div>
   <div class="wrap">
     <a href="#inicio" class="marca" aria-label="Elite Paintball, início"><img src="img/logo-elite.png" alt="Elite Paintball"></a>
     <nav class="menu" id="menu" aria-label="Principal">
@@ -414,6 +463,7 @@ footer::before{content:"";position:absolute;inset:0;background:rgba(26,32,19,.9)
 </section>
 
 <section class="mods" id="modalidades">
+  <svg class="respingo" style="width:260px;height:260px;right:-60px;top:60px;--r:-30deg;--d:.2s"><use href="#sp2" fill="#F5C518" opacity=".22"/></svg>
   <div class="wrap">
     <div class="mods-head rv">
       <div>
@@ -481,6 +531,7 @@ footer::before{content:"";position:absolute;inset:0;background:rgba(26,32,19,.9)
   <div class="wrap">
     <div class="seg-foto rv">
       <img src="img/hero-mira.jpg" alt="Jogador de paintball com máscara de proteção" loading="lazy">
+      <div class="radar" aria-hidden="true"></div>
       <div class="mira" aria-hidden="true"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="100" cy="100" r="46"/><circle cx="100" cy="100" r="4" fill="currentColor"/><path d="M100 30v30M100 140v30M30 100h30M140 100h30"/></svg></div>
     </div>
     <div class="rv">
@@ -498,6 +549,7 @@ footer::before{content:"";position:absolute;inset:0;background:rgba(26,32,19,.9)
 </section>
 
 <section class="festas" id="festas">
+  <div class="confete" id="confete" aria-hidden="true"></div>
   <div class="wrap">
     <div class="festa-topo">
       <div class="rv">
@@ -614,6 +666,7 @@ footer::before{content:"";position:absolute;inset:0;background:rgba(26,32,19,.9)
 </section>
 
 <section class="valores" id="valores">
+  <svg class="respingo" style="width:240px;height:240px;left:-60px;bottom:40px;--r:40deg"><use href="#sp1" fill="#FF5A1F" opacity=".3"/></svg>
   <div class="wrap">
     <div class="rv">
       <span class="selo" style="background:var(--amarelo);color:var(--mata)">Valores e horários</span>
@@ -654,6 +707,7 @@ footer::before{content:"";position:absolute;inset:0;background:rgba(26,32,19,.9)
 </section>
 
 <section class="contato" id="contato">
+  <svg class="respingo" style="width:200px;height:200px;right:4%;top:20px;--r:12deg"><use href="#sp2" fill="#2FB4FF" opacity=".22"/></svg>
   <div class="wrap">
     <div class="zap-box rv">
       <span class="selo" style="background:var(--laranja);color:#fff">Câmbio, câmbio</span>
@@ -719,8 +773,39 @@ footer::before{content:"";position:absolute;inset:0;background:rgba(26,32,19,.9)
   // revelar + cascata
   ['.mod-grid','.kits','.pais','.avisos','.ficha'].forEach(function(g){var w=document.querySelector(g);if(w)[].slice.call(w.children).forEach(function(c,i){c.style.setProperty('--d',(i*0.1)+'s')})});
   var io='IntersectionObserver' in window&&!reduz?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');conta(e.target);io.unobserve(e.target)}})},{threshold:.14,rootMargin:'0px 0px -40px 0px'}):null;
-  document.querySelectorAll('.rv,.respingo').forEach(function(el){io?io.observe(el):el.classList.add('in')});
+  document.querySelectorAll('.rv,.respingo,.inclui').forEach(function(el){io?io.observe(el):el.classList.add('in')});
   function conta(el){if(reduz)return;el.querySelectorAll('[data-n]').forEach(function(b){var alvo=+b.dataset.n,ini=alvo>1000?alvo-20:0,pre=b.dataset.pre||'',t0=null;function f(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/1300),e=1-Math.pow(1-p,3);b.textContent=pre+Math.round(ini+(alvo-ini)*e);if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)})}
+
+
+  // títulos que "batem" palavra por palavra
+  document.querySelectorAll('.rv h2').forEach(function(h){var i=0;(function q(n){[].slice.call(n.childNodes).forEach(function(c){if(c.nodeType===3){var f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(function(p){if(!p)return;if(/^\s+$/.test(p)){f.appendChild(document.createTextNode(p));return}var w=document.createElement('span');w.className='w';var x=document.createElement('span');x.textContent=p;x.style.setProperty('--i',i++);w.appendChild(x);f.appendChild(w)});c.parentNode.replaceChild(f,c)}else if(c.nodeType===1)q(c)})})(h)});
+  ['.inclui','.slots'].forEach(function(sel){var g=document.querySelector(sel);if(g)[].forEach.call(g.children,function(c,k){c.style.setProperty('--k',k)})});
+  var sl=document.querySelector('.slots');if(sl&&io){new IntersectionObserver(function(es,o){if(es[0].isIntersecting){sl.classList.add('in');o.disconnect()}}).observe(sl)}else if(sl)sl.classList.add('in');
+  // munição = progresso da página
+  var mu=document.getElementById('municao'),N=24;for(var k=0;k<N;k++)mu.appendChild(document.createElement('i'));
+  function mun(){var m=document.documentElement.scrollHeight-innerHeight,pr=m>0?scrollY/m:0,g=Math.round(pr*N);[].forEach.call(mu.children,function(b,i){b.classList.toggle('gasto',i<g)})}
+  mun();addEventListener('scroll',mun,{passive:true});
+  if(!reduz){
+    // bolinhas voando no topo
+    var heroVis=true;new IntersectionObserver(function(es){heroVis=es[0].isIntersecting}).observe(hero);
+    function tiro(){if(!heroVis||document.hidden)return;var r=hero.getBoundingClientRect(),W=r.width,H=r.height,deEsq=Math.random()<.5,cor=CORES[Math.floor(Math.random()*CORES.length)];
+      var tx=W*(.35+Math.random()*.6),ty=H*(.12+Math.random()*.7),sx=deEsq?-40:W+40,sy=ty+(Math.random()-.5)*200;
+      var b=document.createElement('span');b.className='bala';b.style.cssText='background:'+cor+';color:'+cor+';left:0;top:0';
+      var ang=Math.atan2(ty-sy,tx-sx)*180/Math.PI;hero.appendChild(b);
+      var an=b.animate([{transform:'translate('+sx+'px,'+sy+'px) rotate('+ang+'deg)'},{transform:'translate('+tx+'px,'+ty+'px) rotate('+ang+'deg)'}],{duration:420+Math.random()*200,easing:'cubic-bezier(.3,.1,.6,1)'});
+      an.onfinish=function(){b.remove();splat(tx+9,ty+9,hero,50+Math.random()*60)}}
+    setInterval(tiro,innerWidth<700?2600:1700);
+    // confete nas festas
+    var cf=document.getElementById('confete'),cc=['#FF5A1F','#E3262B','#2FB4FF','#7BD13A','#8E5BFF','#FFFFFF','#1A2013'];
+    for(var c=0;c<(innerWidth<700?18:34);c++){var e=document.createElement('i');e.style.cssText='left:'+(Math.random()*100)+'%;background:'+cc[c%cc.length]+';--t:'+(7+Math.random()*9)+'s;--dl:'+(-Math.random()*16)+'s;--x:'+((Math.random()-.5)*160)+'px;--rot:'+(360+Math.random()*720)+'deg;width:'+(6+Math.random()*8)+'px;height:'+(10+Math.random()*10)+'px;'+(c%3===0?'border-radius:50%;':'');cf.appendChild(e)}
+    // acerto ao passar o mouse nas modalidades
+    document.querySelectorAll('.mod').forEach(function(m,i){var a=document.createElementNS('http://www.w3.org/2000/svg','svg');a.setAttribute('class','acerto');a.setAttribute('viewBox','0 0 200 200');a.style.cssText='right:'+(-18+Math.random()*30)+'px;top:'+(30+Math.random()*90)+'px;--r:'+(Math.random()*360)+'deg';a.innerHTML='<use href="#sp'+(i%2+1)+'" fill="'+getComputedStyle(m).getPropertyValue('--cor')+'"/>';m.appendChild(a)});
+    // fitas entortam com a velocidade da rolagem
+    var fts=document.querySelector('.fitas'),ly=scrollY,sk=0;
+    (function loop(){var v=scrollY-ly;ly=scrollY;sk+=(Math.max(-8,Math.min(8,v*.25))-sk)*.12;fts.style.transform='skewY('+(sk*.4)+'deg)';requestAnimationFrame(loop)})();
+    // cliques nas festas também soltam tinta
+    var fe=document.getElementById('festas');fe.addEventListener('click',function(e){if(e.target.closest('a,button,figure'))return;var r=fe.getBoundingClientRect();splat(e.clientX-r.left,e.clientY-r.top,fe,50+Math.random()*50)});
+  }
 
   // abas da galeria
   var tabs=[].slice.call(document.querySelectorAll('.abas button'));
